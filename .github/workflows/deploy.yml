@@ -1,0 +1,50 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+env:
+  PROJECT: ${{ vars.GCP_PROJECT_ID }}
+  REPO: ${{ vars.ARTIFACT_REPO }}
+  REGION: ${{ vars.REGION }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Auth GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure docker
+        run: gcloud auth configure-docker $REGION-docker.pkg.dev
+
+      - name: Get commit sha
+        run: echo "TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Build image
+        run: |
+          docker build \
+          --build-arg VITE_SUPABASE_URL="${{ secrets.VITE_SUPABASE_URL }}" \
+          --build-arg VITE_SUPABASE_ANON_KEY="${{ secrets.VITE_SUPABASE_ANON_KEY }}" \
+          -t $REGION-docker.pkg.dev/$PROJECT/$REPO/reimagineimage:$TAG .
+
+      - name: Push image
+        run: |
+          docker push $REGION-docker.pkg.dev/$PROJECT/$REPO/reimagineimage:$TAG
+
+      - name: Deploy Cloud Run
+        run: |
+          gcloud run deploy reimagineimage \
+          --image $REGION-docker.pkg.dev/$PROJECT/$REPO/reimagineimage:$TAG \
+          --region $REGION \
+          --platform managed \
+          --allow-unauthenticated

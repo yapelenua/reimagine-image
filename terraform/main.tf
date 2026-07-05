@@ -47,6 +47,10 @@ resource "google_cloud_run_v2_service" "app" {
   }
 
   depends_on = [google_artifact_registry_repository.repo]
+
+  lifecycle {
+    ignore_changes = [template[0].containers[0].image]
+  }
 }
 
 resource "google_cloud_run_v2_service_iam_member" "public" {
