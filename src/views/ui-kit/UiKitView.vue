@@ -1,16 +1,16 @@
 <template>
   <div class="max-w-[860px] mx-auto px-8 py-12">
-
     <div class="mb-12 pb-6 border-b border-border">
       <h1 class="text-[1.75rem] font-semibold tracking-[-0.02em] text-foreground mb-1">UI Kit</h1>
       <p class="text-sm text-muted-foreground">Component library — Indigo Mono</p>
     </div>
 
     <div class="flex flex-col gap-10">
-
       <!-- BUTTONS -->
       <section class="flex flex-col gap-5">
-        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">Button</h2>
+        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">
+          Button
+        </h2>
 
         <div class="flex flex-col gap-2.5">
           <p class="text-xs font-medium text-muted-foreground">Variants</p>
@@ -44,7 +44,9 @@
 
       <!-- ICON BUTTONS -->
       <section class="flex flex-col gap-5">
-        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">Icon Button</h2>
+        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">
+          Icon Button
+        </h2>
 
         <div class="flex flex-col gap-2.5">
           <p class="text-xs font-medium text-muted-foreground">Variants</p>
@@ -69,7 +71,9 @@
 
       <!-- CHIPS -->
       <section class="flex flex-col gap-5">
-        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">Chip</h2>
+        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">
+          Chip
+        </h2>
         <div class="flex flex-wrap gap-2">
           <UiChip v-model="chips.none" icon="image-filter-none">None</UiChip>
           <UiChip v-model="chips.greyscale" icon="contrast-box">Greyscale</UiChip>
@@ -82,15 +86,23 @@
 
       <!-- SLIDERS -->
       <section class="flex flex-col gap-5">
-        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">Slider</h2>
+        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">
+          Slider
+        </h2>
         <div class="flex flex-col gap-4 max-w-xs">
           <UiSlider v-model="sliders.brightness" label="Brightness" :min="0" :max="200" unit="%" />
-          <UiSlider v-model="sliders.contrast"   label="Contrast"   :min="0" :max="200" unit="%" />
+          <UiSlider v-model="sliders.contrast" label="Contrast" :min="0" :max="200" unit="%" />
           <UiSlider v-model="sliders.saturation" label="Saturation" :min="0" :max="200" unit="%" />
         </div>
         <div class="max-w-xs">
           <p class="text-xs font-medium text-muted-foreground mb-2.5">Disabled</p>
-          <UiSlider v-model="sliders.brightness" label="Brightness" :min="0" :max="200" :disabled="true" />
+          <UiSlider
+            v-model="sliders.brightness"
+            label="Brightness"
+            :min="0"
+            :max="200"
+            :disabled="true"
+          />
         </div>
       </section>
 
@@ -98,7 +110,9 @@
 
       <!-- CARDS -->
       <section class="flex flex-col gap-5">
-        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">Card</h2>
+        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">
+          Card
+        </h2>
         <div class="flex flex-wrap items-stretch gap-4">
           <div class="w-[220px]">
             <UiCard>
@@ -128,7 +142,9 @@
 
       <!-- DIVIDERS -->
       <section class="flex flex-col gap-5">
-        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">Divider</h2>
+        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">
+          Divider
+        </h2>
         <div class="flex flex-col gap-4">
           <div>
             <p class="text-xs font-medium text-muted-foreground mb-2.5">Horizontal</p>
@@ -153,7 +169,9 @@
 
       <!-- TOOLTIP -->
       <section class="flex flex-col gap-5">
-        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">Tooltip</h2>
+        <h2 class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase text-muted-foreground">
+          Tooltip
+        </h2>
         <div class="flex flex-wrap gap-3">
           <UiTooltip text="Downloads the result image" location="top">
             <template #default="{ props }">
@@ -169,7 +187,6 @@
           </UiTooltip>
         </div>
       </section>
-
     </div>
   </div>
 </template>

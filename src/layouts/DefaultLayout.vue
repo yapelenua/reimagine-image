@@ -1,6 +1,5 @@
 <template>
-  <div style="display: flex; height: 100%;">
-
+  <div style="display: flex; height: 100%">
     <nav
       style="
         width: 52px;
@@ -14,7 +13,13 @@
         gap: 4px;
       "
     >
-      <UiTooltip v-for="item in navItems" :key="item.name" :text="item.label" location="right" :open-delay="200">
+      <UiTooltip
+        v-for="item in navItems"
+        :key="item.name"
+        :text="item.label"
+        location="right"
+        :open-delay="200"
+      >
         <template #default="{ props: p }">
           <RouterLink :to="{ name: item.name }" custom v-slot="{ navigate }">
             <UiIconButton
@@ -30,20 +35,18 @@
       </UiTooltip>
     </nav>
 
-    <div style="flex: 1; min-width: 0; overflow: hidden;">
+    <div style="flex: 1; min-width: 0; overflow: hidden">
       <slot />
     </div>
-
   </div>
 </template>
 
 <script setup lang="ts">
-
 const route = useRoute()
 
 const navItems = [
-  { name: 'editor',  icon: 'image-edit-outline', label: 'Editor'  },
-  { name: 'history', icon: 'history',             label: 'History' },
-  { name: 'ui-kit',  icon: 'palette-outline',     label: 'UI Kit'  },
+  { name: 'editor', icon: 'image-edit-outline', label: 'Editor' },
+  { name: 'history', icon: 'history', label: 'History' },
+  { name: 'ui-kit', icon: 'palette-outline', label: 'UI Kit' },
 ]
 </script>

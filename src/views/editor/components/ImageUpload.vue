@@ -10,7 +10,10 @@
 
     <div
       class="flex flex-col items-center justify-center gap-4 w-full h-full border-2 border-dashed transition-colors duration-150"
-      :style="{ borderColor: dragging ? 'var(--primary)' : 'var(--border)', borderRadius: 'var(--radius)' }"
+      :style="{
+        borderColor: dragging ? 'var(--primary)' : 'var(--border)',
+        borderRadius: 'var(--radius)',
+      }"
     >
       <span
         class="mdi mdi-image-plus-outline"
@@ -30,8 +33,7 @@
 </template>
 
 <script setup lang="ts">
-
-const store   = useImageStore()
+const store = useImageStore()
 const dragging = ref(false)
 
 function onPick(e: Event) {

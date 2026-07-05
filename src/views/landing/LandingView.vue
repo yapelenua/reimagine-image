@@ -1,24 +1,35 @@
 <template>
-  <div class="min-h-screen bg-background text-foreground flex flex-col" style="font-family: var(--font-sans)">
-
+  <div
+    class="min-h-screen bg-background text-foreground flex flex-col"
+    style="font-family: var(--font-sans)"
+  >
     <!-- Nav -->
-    <nav class="flex items-center justify-between px-10 py-5 border-b border-border" style="animation: fade-up 0.4s ease both">
+    <nav
+      class="flex items-center justify-between px-10 py-5 border-b border-border"
+      style="animation: fade-up 0.4s ease both"
+    >
       <span class="text-sm font-semibold tracking-tight">ReimagineImage</span>
       <button
         v-if="!authStore.user"
         class="text-[0.8rem] text-muted-foreground hover:text-foreground transition-colors duration-150 cursor-pointer bg-transparent border-none"
         @click="authStore.openLogin"
-      >Sign in</button>
+      >
+        Sign in
+      </button>
       <button
         v-else
         class="text-[0.8rem] text-muted-foreground hover:text-foreground transition-colors duration-150 cursor-pointer bg-transparent border-none"
         @click="router.push({ name: 'editor' })"
-      >Go to editor →</button>
+      >
+        Go to editor →
+      </button>
     </nav>
 
     <!-- Hero -->
-    <section class="flex-1 flex flex-col items-center justify-center text-center px-8 py-28 gap-8" style="animation: fade-up 0.5s 0.1s ease both">
-
+    <section
+      class="flex-1 flex flex-col items-center justify-center text-center px-8 py-28 gap-8"
+      style="animation: fade-up 0.5s 0.1s ease both"
+    >
       <h1
         class="font-semibold tracking-[-0.03em] leading-[1.1] m-0 max-w-[560px]"
         style="font-size: clamp(2.4rem, 5vw, 3.6rem)"
@@ -38,7 +49,6 @@
         {{ authStore.user ? 'Go to editor' : 'Get started free' }}
         <span class="mdi mdi-arrow-right text-[15px]" />
       </button>
-
     </section>
 
     <!-- Footer -->
@@ -46,12 +56,11 @@
       <span class="text-[0.72rem] font-medium">ReimagineImage</span>
       <span class="text-[0.72rem] text-muted-foreground">© {{ year }}</span>
     </footer>
-
   </div>
 </template>
 
 <script setup lang="ts">
-const router    = useRouter()
+const router = useRouter()
 const authStore = useAuthStore()
 const year = new Date().getFullYear()
 </script>

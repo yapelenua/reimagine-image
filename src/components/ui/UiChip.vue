@@ -18,15 +18,18 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{
-  modelValue?: boolean
-  icon?: string
-  disabled?: boolean
-}>(), {
-  modelValue: false,
-  icon: '',
-  disabled: false,
-})
+withDefaults(
+  defineProps<{
+    modelValue?: boolean
+    icon?: string
+    disabled?: boolean
+  }>(),
+  {
+    modelValue: false,
+    icon: '',
+    disabled: false,
+  },
+)
 
 defineEmits<{ 'update:modelValue': [value: boolean] }>()
 </script>

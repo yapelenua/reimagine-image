@@ -1,19 +1,49 @@
 <template>
   <v-dialog :model-value="true" max-width="540" @update:model-value="$emit('close')">
-    <div style="background: var(--card); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column;">
-
+    <div
+      style="
+        background: var(--card);
+        border-radius: var(--radius);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      "
+    >
       <!-- Header -->
-      <div style="padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;">
-        <p style="font-size: 0.875rem; font-weight: 600; color: var(--foreground); margin: 0;">Preset</p>
+      <div
+        style="
+          padding: 16px 20px;
+          border-bottom: 1px solid var(--border);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <p style="font-size: 0.875rem; font-weight: 600; color: var(--foreground); margin: 0">
+          Preset
+        </p>
         <UiIconButton icon="close" label="Close" size="sm" @click="$emit('close')" />
       </div>
 
-      <div style="padding: 20px; display: flex; flex-direction: column; gap: 16px;">
-
+      <div style="padding: 20px; display: flex; flex-direction: column; gap: 16px">
         <!-- Saved presets dropdown -->
-        <div v-if="presetsStore.presets.length" style="display: flex; flex-direction: column; gap: 6px;">
-          <p style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-foreground); margin: 0;">Saved presets</p>
-          <div style="display: flex; gap: 8px; align-items: center;">
+        <div
+          v-if="presetsStore.presets.length"
+          style="display: flex; flex-direction: column; gap: 6px"
+        >
+          <p
+            style="
+              font-size: 0.7rem;
+              font-weight: 600;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: var(--muted-foreground);
+              margin: 0;
+            "
+          >
+            Saved presets
+          </p>
+          <div style="display: flex; gap: 8px; align-items: center">
             <select
               v-model="selectedPresetId"
               style="
@@ -46,11 +76,22 @@
         </div>
 
         <!-- Divider if presets exist -->
-        <div v-if="presetsStore.presets.length" style="height: 1px; background: var(--border);" />
+        <div v-if="presetsStore.presets.length" style="height: 1px; background: var(--border)" />
 
         <!-- JSON textarea -->
-        <div style="display: flex; flex-direction: column; gap: 6px;">
-          <p style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-foreground); margin: 0;">JSON</p>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <p
+            style="
+              font-size: 0.7rem;
+              font-weight: 600;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: var(--muted-foreground);
+              margin: 0;
+            "
+          >
+            JSON
+          </p>
           <textarea
             v-model="raw"
             placeholder='{ "adjustments": { "brightness": 110, "contrast": 95, "saturation": 120 }, "filter": "none" }'
@@ -73,20 +114,25 @@
             @focus="($event.target as HTMLTextAreaElement).style.borderColor = 'var(--primary)'"
             @blur="($event.target as HTMLTextAreaElement).style.borderColor = 'var(--border)'"
           />
-          <p v-if="applyError" style="font-size: 0.75rem; color: var(--destructive); margin: 0;">
+          <p v-if="applyError" style="font-size: 0.75rem; color: var(--destructive); margin: 0">
             <span class="mdi mdi-alert-circle-outline mr-1" />{{ applyError }}
           </p>
         </div>
-
-
       </div>
 
       <!-- Footer -->
-      <div style="padding: 12px 20px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px;">
+      <div
+        style="
+          padding: 12px 20px;
+          border-top: 1px solid var(--border);
+          display: flex;
+          justify-content: flex-end;
+          gap: 8px;
+        "
+      >
         <UiButton variant="secondary" size="sm" @click="$emit('close')">Cancel</UiButton>
         <UiButton size="sm" :disabled="!raw.trim()" @click="handleApply">Apply</UiButton>
       </div>
-
     </div>
   </v-dialog>
 
@@ -100,18 +146,19 @@
 </template>
 
 <script setup lang="ts">
-
 const emit = defineEmits<{ close: [] }>()
 
-const imageStore   = useImageStore()
+const imageStore = useImageStore()
 const presetsStore = usePresetsStore()
 
-const raw              = ref('')
+const raw = ref('')
 const selectedPresetId = ref('')
-const applyError       = ref<string | null>(null)
-const confirmDelete    = ref(false)
+const applyError = ref<string | null>(null)
+const confirmDelete = ref(false)
 
-onMounted(() => { presetsStore.fetchPresets() })
+onMounted(() => {
+  presetsStore.fetchPresets()
+})
 
 function loadSelectedPreset() {
   const found = presetsStore.presets.find(p => p.id === selectedPresetId.value)

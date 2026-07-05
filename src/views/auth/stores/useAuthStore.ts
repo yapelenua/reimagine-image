@@ -6,12 +6,20 @@ export const useAuthStore = defineStore('auth', () => {
   const loading = ref(false)
   const authModal = ref<'login' | 'register' | null>(null)
 
-  function openLogin() { authModal.value = 'login' }
-  function openRegister() { authModal.value = 'register' }
-  function closeModal() { authModal.value = null }
+  function openLogin() {
+    authModal.value = 'login'
+  }
+  function openRegister() {
+    authModal.value = 'register'
+  }
+  function closeModal() {
+    authModal.value = null
+  }
 
   async function init() {
-    const { data: { session } } = await supabase.auth.getSession()
+    const {
+      data: { session },
+    } = await supabase.auth.getSession()
     user.value = session?.user ?? null
 
     supabase.auth.onAuthStateChange((_, session) => {
@@ -46,5 +54,16 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = null
   }
 
-  return { user, loading, authModal, openLogin, openRegister, closeModal, init, signIn, signUp, logout }
+  return {
+    user,
+    loading,
+    authModal,
+    openLogin,
+    openRegister,
+    closeModal,
+    init,
+    signIn,
+    signUp,
+    logout,
+  }
 })

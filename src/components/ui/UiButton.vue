@@ -23,22 +23,27 @@
 <script setup lang="ts">
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<{
-  variant?: 'primary' | 'secondary' | 'ghost' | 'destructive'
-  size?: 'sm' | 'md' | 'lg'
-  disabled?: boolean
-  loading?: boolean
-}>(), {
-  variant: 'primary',
-  size: 'md',
-  disabled: false,
-  loading: false,
-})
+withDefaults(
+  defineProps<{
+    variant?: 'primary' | 'secondary' | 'ghost' | 'destructive'
+    size?: 'sm' | 'md' | 'lg'
+    disabled?: boolean
+    loading?: boolean
+  }>(),
+  {
+    variant: 'primary',
+    size: 'md',
+    disabled: false,
+    loading: false,
+  },
+)
 
 const variantClasses: Record<string, string> = {
   primary: 'bg-primary text-primary-foreground border-primary hover:opacity-[0.88]',
-  secondary: 'bg-secondary text-secondary-foreground border-border hover:bg-accent hover:text-accent-foreground',
-  ghost: 'bg-transparent text-foreground border-transparent hover:bg-accent hover:text-accent-foreground',
+  secondary:
+    'bg-secondary text-secondary-foreground border-border hover:bg-accent hover:text-accent-foreground',
+  ghost:
+    'bg-transparent text-foreground border-transparent hover:bg-accent hover:text-accent-foreground',
   destructive: 'bg-destructive text-destructive-foreground border-destructive hover:opacity-[0.88]',
 }
 

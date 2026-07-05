@@ -12,14 +12,17 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{
-  text: string
-  location?: 'top' | 'bottom' | 'left' | 'right'
-  openDelay?: number
-}>(), {
-  location: 'top',
-  openDelay: 300,
-})
+withDefaults(
+  defineProps<{
+    text: string
+    location?: 'top' | 'bottom' | 'left' | 'right'
+    openDelay?: number
+  }>(),
+  {
+    location: 'top',
+    openDelay: 300,
+  },
+)
 </script>
 
 <style>

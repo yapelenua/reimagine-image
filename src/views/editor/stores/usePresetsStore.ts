@@ -43,7 +43,7 @@ export const usePresetsStore = defineStore('presets', () => {
 
     const current: SavedPreset[] = data?.savedpresets ?? []
     const entry: SavedPreset = {
-      id:         crypto.randomUUID(),
+      id: crypto.randomUUID(),
       name,
       preset,
       created_at: new Date().toISOString(),

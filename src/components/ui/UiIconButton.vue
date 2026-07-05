@@ -21,23 +21,29 @@
 <script setup lang="ts">
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<{
-  icon: string
-  label?: string
-  variant?: 'default' | 'ghost' | 'destructive'
-  size?: 'sm' | 'md' | 'lg'
-  disabled?: boolean
-}>(), {
-  label: '',
-  variant: 'ghost',
-  size: 'md',
-  disabled: false,
-})
+withDefaults(
+  defineProps<{
+    icon: string
+    label?: string
+    variant?: 'default' | 'ghost' | 'destructive'
+    size?: 'sm' | 'md' | 'lg'
+    disabled?: boolean
+  }>(),
+  {
+    label: '',
+    variant: 'ghost',
+    size: 'md',
+    disabled: false,
+  },
+)
 
 const variantClasses: Record<string, string> = {
-  ghost: 'bg-transparent text-foreground border-transparent hover:bg-accent hover:text-accent-foreground',
-  default: 'bg-secondary text-secondary-foreground border-border hover:bg-accent hover:text-accent-foreground',
-  destructive: 'bg-transparent text-destructive border-transparent hover:bg-destructive hover:text-destructive-foreground',
+  ghost:
+    'bg-transparent text-foreground border-transparent hover:bg-accent hover:text-accent-foreground',
+  default:
+    'bg-secondary text-secondary-foreground border-border hover:bg-accent hover:text-accent-foreground',
+  destructive:
+    'bg-transparent text-destructive border-transparent hover:bg-destructive hover:text-destructive-foreground',
 }
 
 const sizeClasses: Record<string, string> = {
