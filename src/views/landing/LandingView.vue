@@ -3,7 +3,7 @@
 
     <!-- Nav -->
     <nav class="flex items-center justify-between px-10 py-5 border-b border-border" style="animation: fade-up 0.4s ease both">
-      <span class="text-sm font-semibold tracking-tight">TEST</span>
+      <span class="text-sm font-semibold tracking-tight">ReimagineImage</span>
       <button
         v-if="!authStore.user"
         class="text-[0.8rem] text-muted-foreground hover:text-foreground transition-colors duration-150 cursor-pointer bg-transparent border-none"
