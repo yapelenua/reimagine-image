@@ -203,10 +203,7 @@
     v-if="confirmDeleteId"
     title="Delete preset?"
     :message="`«${store.presets.find(p => p.id === confirmDeleteId)?.name}» will be permanently removed.`"
-    @confirm="
-      handleDelete(confirmDeleteId!)
-      confirmDeleteId = null
-    "
+    @confirm="confirmDelete"
     @cancel="confirmDeleteId = null"
   />
 </template>
@@ -264,5 +261,11 @@ async function handleDelete(id: string) {
   } finally {
     deleting.value = null
   }
+}
+
+async function confirmDelete() {
+  if (!confirmDeleteId.value) return
+  await handleDelete(confirmDeleteId.value)
+  confirmDeleteId.value = null
 }
 </script>

@@ -97,6 +97,18 @@ const emailTouched = ref(false)
 
 const emailValid = computed(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value))
 
+watch(
+  () => authStore.authModal,
+  val => {
+    if (val === 'login') return
+    email.value = ''
+    password.value = ''
+    error.value = ''
+    showPassword.value = false
+    emailTouched.value = false
+  },
+)
+
 async function submit() {
   emailTouched.value = true
   if (!emailValid.value) return
