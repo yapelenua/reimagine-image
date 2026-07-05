@@ -234,10 +234,7 @@
     title="Reset all edits?"
     message="All adjustments, filters and crop will be removed."
     confirm-label="Reset"
-    @confirm="
-      store.resetEdits()
-      confirmReset = false
-    "
+    @confirm="confirmResetEdits"
     @cancel="confirmReset = false"
   />
 
@@ -281,6 +278,11 @@ async function handleSave() {
 function onFilePick(e: Event) {
   const file = (e.target as HTMLInputElement).files?.[0]
   if (file) store.loadFile(file)
+}
+
+function confirmResetEdits() {
+  store.resetEdits()
+  confirmReset.value = false
 }
 
 function onDrop(e: DragEvent) {
